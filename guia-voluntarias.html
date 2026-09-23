@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feira das Profissões 2026 | Guia do Voluntário</title>
+<style>
+  :root {
+    --verde-utfpr: #0f4d3a;
+    --verde-claro: #1f7a5c;
+    --azul: #0e7cac;
+    --vermelho: #c1272d;
+    --cinza-claro: #f4f6f5;
+    --cinza-borda: #dde3e0;
+    --texto: #22292f;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--texto);
+    background: var(--cinza-claro);
+    line-height: 1.6;
+  }
+
+  header.cabecalho {
+    background: linear-gradient(135deg, var(--verde-utfpr) 0%, var(--verde-claro) 100%);
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  header.cabecalho .etiqueta {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    padding: 4px 16px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  header.cabecalho h1 { font-size: 1.9rem; line-height: 1.2; }
+
+  header.cabecalho p.sub { margin-top: 8px; font-size: 1.05rem; opacity: 0.9; }
+
+  main.conteudo {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 28px 16px 60px;
+  }
+
+  .carta {
+    background: #fff;
+    border: 1px solid var(--cinza-borda);
+    border-left: 6px solid var(--vermelho);
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 32px;
+  }
+
+  .carta h2 {
+    color: var(--verde-utfpr);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .carta p { margin-bottom: 10px; }
+  .carta p:last-child { margin-bottom: 0; }
+
+  h2.titulo-secao {
+    font-size: 1.3rem;
+    color: var(--verde-utfpr);
+    margin: 36px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 3px solid var(--verde-claro);
+  }
+
+  .atividade {
+    background: #fff;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+
+  .atividade summary {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    background: var(--cinza-claro);
+    border-bottom: 1px solid var(--cinza-borda);
+    padding: 16px 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 0.3px;
+  }
+
+  .atividade summary::-webkit-details-marker { display: none; }
+
+  .atividade summary .nome { flex: 1; min-width: 200px; }
+
+  .atividade summary .sub {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #4a5560;
+  }
+
+  .atividade summary .seta {
+    margin-left: auto;
+    font-size: 0.8rem;
+    color: var(--verde-claro);
+    transition: transform 0.2s ease;
+  }
+
+  .atividade[open] summary .seta { transform: rotate(180deg); }
+
+  .atividade summary:hover { background: #eef3f0; }
+
+  .atividade summary:focus-visible { outline: 2px solid var(--azul); outline-offset: -2px; }
+
+  .badge-lab {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--azul);
+    border-radius: 999px;
+    padding: 3px 12px;
+  }
+
+  .badge-lab.k106 { background: var(--verde-utfpr); }
+
+  .badge-lab.quadra { background: var(--vermelho); }
+
+  .badge-lab.bloco-k { background: #6a4fa3; }
+
+  .atividade .corpo { padding: 20px 24px; }
+
+  .atividade .bloco { margin-bottom: 18px; }
+  .atividade .bloco:last-child { margin-bottom: 0; }
+
+  .bloco .rotulo {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--verde-claro);
+    margin-bottom: 6px;
+  }
+
+  .bloco.objetivo p { color: #4a5560; font-size: 0.97rem; }
+
+  .bloco.passos ol { list-style: none; counter-reset: passo; }
+
+  .bloco.passos ol li {
+    counter-increment: passo;
+    position: relative;
+    padding: 10px 0 4px 52px;
+    min-height: 40px;
+  }
+
+  .bloco.passos ol li::before {
+    content: counter(passo);
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--verde-utfpr);
+    color: #fff;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+
+  .bloco.passos .verbo {
+    display: block;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+    color: var(--azul);
+    margin-bottom: 2px;
+  }
+
+  .bloco.passos .fala {
+    display: block;
+    background: var(--cinza-claro);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-style: italic;
+    margin-top: 4px;
+  }
+
+  .bloco.passos .observacao {
+    display: block;
+    font-size: 0.9rem;
+    color: #8a2b2e;
+    margin-top: 4px;
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  .bloco.video { margin-top: 20px; }
+
+  .bloco.video .rotulo { color: var(--vermelho); }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: #0c0f12;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .video-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #9fb1c0;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+  }
+
+  .video-placeholder strong { color: #d7e3ea; display: block; margin-bottom: 6px; }
+
+  .video-placeholder code {
+    background: #1c2730;
+    color: #76c9a3;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+  }
+
+  .nota {
+    font-size: 0.85rem;
+    color: #6b7680;
+    margin-bottom: 10px;
+  }
+
+  .tabela-wrapper {
+    overflow-x: auto;
+    background: #fff;
+    border: 1px solid var(--cinza-borda);
+    border-radius: 12px;
+  }
+
+  table.atribuicoes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  table.atribuicoes th,
+  table.atribuicoes td {
+    border: 1px solid var(--cinza-borda);
+    padding: 10px 14px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  table.atribuicoes thead th {
+    background: var(--verde-utfpr);
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  table.atribuicoes tbody tr:nth-child(even) { background: var(--cinza-claro); }
+
+  table.atribuicoes td.local { font-weight: 600; }
+
+  footer.rodape {
+    text-align: center;
+    font-size: 0.85rem;
+    color: #6b7680;
+    padding: 20px;
+    border-top: 1px solid var(--cinza-borda);
+    background: #fff;
+  }
+
+  nav.menu-principal {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--verde-utfpr);
+    border-bottom: 3px solid var(--vermelho);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+
+  nav.menu-principal ul {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 16px;
+    list-style: none;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  nav.menu-principal a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px 16px;
+  }
+
+  nav.menu-principal a:hover {
+    background: var(--verde-claro);
+  }
+
+  #explicacoes, #atribuicoes { scroll-margin-top: 60px; }
+
+  @media (max-width: 600px) {
+    header.cabecalho h1 { font-size: 1.5rem; }
+    .atividade .topo, .atividade .corpo { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="cabecalho">
+  <span class="etiqueta">DAEEC · UTFPR</span>
+  <h1>Feira das Profissões 2026</h1>
+  <p class="sub">Guia de orientação para alunos voluntários</p>
+</header>
+
+<nav class="menu-principal">
+  <ul>
+    <li><a href="#explicacoes">Explicações</a></li>
+    <li><a href="#atribuicoes">Tabela de atribuições</a></li>
+  </ul>
+</nav>
+
+<main class="conteudo">
+
+  <section class="carta">
+    <h2>Carta ao voluntário</h2>
+    <p>Caro(a) aluno(a),</p>
+    <p>A Feira das Profissões tem como objetivo apresentar os cursos e iniciativas da universidade à comunidade externa, sobretudo alunos do ensino médio que estão em fase de decisão de qual graduação escolher.</p>
+    <p>Neste ano, o DAEEC terá atividades nos laboratórios <strong>K-102</strong> e <strong>K-106</strong>. Consulte abaixo o roteiro de cada atividade e os vídeos de apoio para conduzir a apresentação.</p>
+  </section>
+
+  <!-- ============================ ATRIBUIÇÕES ============================ -->
+  <h2 class="titulo-secao" id="atribuicoes">Atribuições</h2>
+
+  <p class="nota">Alunos (24 voluntários)</p>
+
+  <div class="tabela-wrapper">
+    <table class="atribuicoes">
+      <thead>
+        <tr>
+          <th>Local / Ação</th>
+          <th>8h – 12h</th>
+          <th>13h – 17h</th>
+          <th>18h – 21h</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="local">Lab. K102 (Lógica de Programação)</td>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="local">Lab. K106 (Visão Computacional Interativa)</td>
+          <td>Guilherme Fonseca</td>
+          <td>Izabelly de Oliveira</td>
+          <td>Bruna Augusto Sales</td>
+        </tr>
+        <tr>
+          <td class="local">Lab. K106 (Totem de Aptidão)</td>
+          <td>Larissa Mayumi</td>
+          <td>Eduardo Morete</td>
+          <td>Felipe Candido Ferreira</td>
+        </tr>
+        <tr>
+          <td class="local">Lab. K106 (Letramento Digital em Segurança)</td>
+          <td>Caio Estevão</td>
+          <td>Samuel Rosa</td>
+          <td>Brenda</td>
+        </tr>
+        <tr>
+          <td class="local">Lab. K106 (RAG)</td>
+          <td></td>
+          <td>Isabelle de Oliveira</td>
+          <td>Heitor Alves Francisquini</td>
+        </tr>
+        <tr>
+          <td class="local">Quadra (onboarding #1)</td>
+          <td></td>
+          <td>Camila Nishimoto</td>
+          <td>Rafael Rett</td>
+        </tr>
+        <tr>
+          <td class="local">Quadra (onboarding #2)</td>
+          <td></td>
+          <td></td>
+          <td>Leonardo Correia</td>
+        </tr>
+        <tr>
+          <td class="local">Quadra (onboarding #3)</td>
+          <td></td>
+          <td></td>
+          <td>Felipe Nascimento de Souza</td>
+        </tr>
+        <tr>
+          <td class="local">Quadra (onboarding #4)</td>
+          <td></td>
+          <td></td>
+          <td>Marcelo de Lucas</td>
+        </tr>
+        <tr>
+          <td class="local">Entrada do Bloco K (orientação de alunos)</td>
+          <td></td>
+          <td></td>
+          <td>Larissa de Lima Caputt<br>Ana Beatriz Gomes</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================ EXPLICAÇÃO DAS ATIVIDADES ============================ -->
+  <h2 class="titulo-secao" id="explicacoes">Explicação das atividades</h2>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab">K-102</span>
+      <span class="nome">Lógica de Programação para iniciantes</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Objetivo</div>
+        <p>Apresentar uma experiência de como é a lógica de programação por meio do programa Scratch.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab k106">K-106</span>
+      <span class="nome">Totem Vocacional (SI/CDIA)</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Objetivo</div>
+        <p>Auxiliar o estudante que pretende cursar uma graduação na área de computação a escolher entre o curso de Ciência de Dados e Inteligência Artificial (CDIA) ou Sistemas de Informação (SI).</p>
+      </div>
+
+      <div class="bloco passos">
+        <div class="rotulo">Como conduzir a apresentação</div>
+        <ol>
+          <li>
+            <span class="verbo">Aborde</span>
+            <span class="fala">&ldquo;Você já sabe qual área de tecnologia combina mais com você?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Desperte a curiosidade</span>
+            <span class="fala">&ldquo;A gente tem um quiz que faz algumas perguntas sobre seu perfil e mostra se você tem maior afinidade com Ciência de Dados e Inteligência Artificial ou com Sistemas de Informação.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Convite</span>
+            <span class="fala">&ldquo;Quer fazer? É rapidinho.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Deixe o visitante responder</span>
+            <span class="fala">&ldquo;Responda pensando no que realmente combina com você. Não tem resposta certa ou errada.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Converse sobre o resultado</span>
+            <span class="fala">&ldquo;Vamos ver o que apareceu para você?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Aprofunde</span>
+            <span class="fala">&ldquo;Você já conhecia esse curso?&rdquo;<br>&ldquo;Quer que eu te explique como é a graduação e o que você pode fazer depois de formado?&rdquo;</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="bloco video" data-video-id="wKUqinPLZ2w">
+        <div class="rotulo">Vídeo demonstrativo (como utilizar o aplicativo)</div>
+        <div class="video-wrapper">
+          <div class="video-placeholder">
+            <strong>Vídeo não configurado</strong>
+            Adicione o ID do vídeo do YouTube no atributo
+            <code>data-video-id</code> deste bloco.
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab k106">K-106</span>
+      <span class="nome">Lousa Interativa</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Objetivo</div>
+        <p>Apresentar, de forma prática e interativa, uma aplicação de visão computacional que utiliza a câmera para identificar os movimentos da mão e transformá-los em comandos na tela. A experiência permite que o visitante: (a) escreva na tela movimentando a mão; (b) escolha cores usando gestos; (c) apague o que escreveu; (d) perceba, na prática, como uma câmera pode interpretar movimentos humanos.</p>
+      </div>
+
+      <div class="bloco passos">
+        <div class="rotulo">Como conduzir a apresentação</div>
+        <ol>
+          <li>
+            <span class="verbo">Chamar</span>
+            <span class="fala">&ldquo;Você quer experimentar uma coisa diferente? Aqui você consegue escrever na tela usando apenas a sua mão.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Experimentar</span>
+            <span class="fala">&ldquo;Fique em frente à câmera e levante a mão.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Escrever</span>
+            <span class="fala">&ldquo;Agora movimente o dedo e veja o que acontece.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Mudar a cor</span>
+            <span class="fala">&ldquo;Agora tente escolher uma cor usando a mão.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Apagar</span>
+            <span class="fala">&ldquo;E agora tente apagar o que você escreveu.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Explicar a tecnologia</span>
+            <span class="fala">&ldquo;A câmera identifica a sua mão e o computador interpreta os movimentos. Isso é visão computacional.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Concluir</span>
+            <span class="fala">&ldquo;Isso é um exemplo de tecnologia que pode ser desenvolvida por estudantes de Computação.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Sugerir o quiz</span>
+            <span class="fala">Sugerir ao aluno fazer o quiz para auxiliar na escolha entre CDIA/SI, que estará também disponível no laboratório.</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="bloco video" data-video-id="">
+        <div class="rotulo">Vídeo demonstrativo (como utilizar o aplicativo)</div>
+        <div class="video-wrapper">
+          <div class="video-placeholder">
+            <strong>Vídeo não configurado</strong>
+            Adicione o ID do vídeo do YouTube no atributo
+            <code>data-video-id</code> deste bloco.
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab k106">K-106</span>
+      <span class="nome">Letramento em segurança digital <span class="sub">— Força de senhas</span></span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Objetivo</div>
+        <p>Utilizar um aplicativo que estima quanto tempo uma senha poderia levar para ser descoberta, mostrando, na prática, como criar senhas mais seguras.</p>
+      </div>
+
+      <div class="bloco passos">
+        <div class="rotulo">Como conduzir a apresentação</div>
+        <ol>
+          <li>
+            <span class="verbo">Perguntar</span>
+            <span class="fala">&ldquo;Você acha que sua senha seria fácil ou difícil de descobrir?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Convidar</span>
+            <span class="fala">&ldquo;Temos um aplicativo que estima quanto tempo uma senha poderia levar para ser descoberta. Quer testar?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Alertar</span>
+            <span class="fala">&ldquo;Não use sua senha de verdade. Crie uma senha fictícia que você nunca tenha usado.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Testar</span>
+            <span class="fala">&ldquo;Digite uma senha fictícia e vamos ver o resultado.&rdquo;</span>
+            <span class="observacao">NUNCA peça ao visitante a senha que ele realmente utiliza.</span>
+          </li>
+          <li>
+            <span class="verbo">Refletir</span>
+            <span class="fala">&ldquo;O que você acha que tornou essa senha mais ou menos segura?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Aprender</span>
+            <span class="fala">&ldquo;Agora o aplicativo vai mostrar algumas dicas para criar uma senha mais segura.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Tentar novamente</span>
+            <span class="fala">&ldquo;Crie uma nova senha fictícia seguindo essas dicas.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Comparar</span>
+            <span class="fala">&ldquo;Vamos testar novamente e comparar os resultados.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Concluir</span>
+            <span class="fala">&ldquo;Uma boa segurança digital começa também pela forma como criamos, protegemos e utilizamos nossas senhas.&rdquo;</span>
+          </li>
+        </ol>
+      </div>
+
+      <div class="bloco video" data-video-id="">
+        <div class="rotulo">Vídeo demonstrativo (como utilizar o aplicativo)</div>
+        <div class="video-wrapper">
+          <div class="video-placeholder">
+            <strong>Vídeo não configurado</strong>
+            Adicione o ID do vídeo do YouTube no atributo
+            <code>data-video-id</code> deste bloco.
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab k106">K-106</span>
+      <span class="nome">Chatbot tira dúvidas dos cursos de Sistemas de Informações e CDIA</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Objetivo</div>
+        <p>Tirar dúvidas sobre os cursos, considerando as informações disponíveis nos projetos pedagógicos.</p>
+      </div>
+
+      <div class="bloco passos">
+        <div class="rotulo">Como conduzir a apresentação</div>
+        <ol>
+          <li>
+            <span class="verbo">Aborde</span>
+            <span class="fala">&ldquo;Você gostaria de tirar alguma dúvida sobre um dos cursos?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Desperte a curiosidade</span>
+            <span class="fala">&ldquo;Nós fizemos um assistente de IA para responder perguntas sobre o curso. Ele ainda está em fase de testes, mas pode ajudar com algumas dúvidas.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Convite</span>
+            <span class="fala">&ldquo;É só fazer sua pergunta e aguardar a resposta.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Deixe o visitante responder</span>
+            <span class="fala">&ldquo;A IA ainda está em processo de treinamento, por isso algumas respostas podem ser engraçadas.&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Converse sobre o resultado</span>
+            <span class="fala">&ldquo;Vamos ver o que apareceu para você?&rdquo;</span>
+          </li>
+          <li>
+            <span class="verbo">Aprofunde</span>
+            <span class="fala">&ldquo;Essa IA foi construída com tecnologias abertas, em menor escala que os sistemas disponíveis no mercado. Se você quiser estudar sobre como essa tecnologia é construída e como melhorar ela, os nossos cursos são para você.&rdquo;</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab quadra">Quadra</span>
+      <span class="nome">Onboarding</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Descrição da atividade</div>
+        <p>O voluntário de Onboarding permanece no estande do curso, localizado na Quadra Poliesportiva. Sua função é receber os visitantes no estande e conduzi-los até os laboratórios K-102 e K-106. Ao chegar ao laboratório, o voluntário deve apresentar os visitantes ao professor responsável e, em seguida, retornar ao estande para atender novos visitantes.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="atividade">
+    <summary>
+      <span class="badge-lab bloco-k">Bloco K</span>
+      <span class="nome">Entrada Bloco K</span>
+      <span class="seta">&#9660;</span>
+    </summary>
+    <div class="corpo">
+      <div class="bloco objetivo">
+        <div class="rotulo">Descrição da atividade</div>
+        <p>O voluntário da Entrada do Bloco K aborda os visitantes que circulam pelos arredores e pergunta se têm interesse em conhecer os cursos de Sistemas de Informação (SI) e de Ciência de Dados e Inteligência Artificial (CDIA). Caso o visitante demonstre interesse, o voluntário o conduz até os laboratórios K-102 e K-106.</p>
+      </div>
+    </div>
+  </details>
+  <!-- fim / Explicação das atividades -->
+
+</main>
+
+<footer class="rodape">
+  Feira das Profissões 2026 · UTFPR · DAEEC — Guia interno para voluntários
+</footer>
+
+<script>
+  document.querySelectorAll('.bloco.video').forEach(function (bloco) {
+    var videoId = bloco.getAttribute('data-video-id'); // exemplo: data-video-id="dQw4w9WgXcQ"
+    if (videoId) {
+      bloco.querySelector('.video-placeholder').outerHTML =
+        '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(videoId.trim()) +
+        '" title="Vídeo demonstrativo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+    }
+  });
+</script>
+
+</body>
+</html>
