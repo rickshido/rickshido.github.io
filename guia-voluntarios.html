@@ -743,8 +743,8 @@
     var videoId = bloco.getAttribute('data-video-id'); // exemplo: data-video-id="dQw4w9WgXcQ"
     if (videoId) {
       bloco.querySelector('.video-placeholder').outerHTML =
-        '<iframe src="https://www.youtube.com/embed/' + encodeURIComponent(videoId.trim()) +
-        '" title="Vídeo demonstrativo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
+        '<iframe src="https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId.trim()) +
+        '" title="Vídeo demonstrativo" frameborder="0" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>';
     }
   });
 </script>
